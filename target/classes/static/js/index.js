@@ -22,11 +22,24 @@ function firm(number) {
         return false;
 }
 
+function Switch(Switch, number) {
+    const msg = prompt("请输入身份码");
+    if (msg != null && msg !== "") {
+        xmlhttp.open("GET", "/开关?number=" + number + "&Code=" + msg + "&Switch=" + Switch, true);
+        xmlhttp.onreadystatechange = Result;
+        xmlhttp.send(null);
+    } else
+        return false;
+}
+
 /*身份验证反馈*/
 function Result() {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200)
         if (xmlhttp.response.slice(0, 10) === "身份码正确,删除成功") {
             alert("身份码正确,删除成功");
+            location.reload();
+        } else if (xmlhttp.response.slice(0, 13) === "身份码正确,已经将任务关闭") {
+            alert("身份码正确,已经将任务关闭");
             location.reload();
         } else {
             alert("身份码错误,请重新输入");

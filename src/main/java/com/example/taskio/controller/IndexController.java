@@ -22,12 +22,19 @@ public class IndexController {
 
     @ResponseBody
     @GetMapping("/删除")
-    public String del(@RequestParam("number") int Number, @RequestParam("Code") String Code) throws Exception {
+    public String delNumber(@RequestParam("number") int Number, @RequestParam("Code") String Code) throws Exception {
         if (TaskOperation.getCode(Number).equals(Code)) {
             TaskOperation.deleteTask(Number);
             return "身份码正确,删除成功" + Number;
-        } else {
-            return "身份码错误,请重新输入" + Number;
-        }
+        } else return "身份码错误,请重新输入" + Number;
+    }
+
+    @ResponseBody
+    @GetMapping("/开关")
+    public String updateSwitch(@RequestParam("number") int Number, @RequestParam("Code") String Code, @RequestParam("Switch") String Switch) throws Exception {
+        if (TaskOperation.getCode(Number).equals(Code)) {
+            TaskOperation.updateSwitch(Switch, Number);
+            return "身份码正确,已经将任务关闭" + Number;
+        } else return "身份码错误,请重新输入" + Number;
     }
 }
