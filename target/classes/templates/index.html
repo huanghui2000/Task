@@ -1,0 +1,42 @@
+<!--suppress ALL -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="/css/index.css"/>
+        <link rel="stylesheet" href="/css/button.css"/>
+        <link rel="stylesheet" href="/css/menu.css"/>
+        <script type="text/javascript" src="/js/index.js"></script>
+        <title>Task crud</title>
+    </head>
+    <div id="center">
+        <h1> 定时任务crud </h1>
+        <table class="tbl-header" id="h1">
+            <tr>
+                <th style="width: 100px;">时间</th>
+                <th style="width: 100px;">对象</th>
+                <th style="width: 150px;">ID</th>
+                <th style="width: 280px;word-break:break-all;">语句</th>
+                <th style="width: 140px;">控制</th>
+            </tr>
+        </table>
+        <table class="tbl-content">
+            <tr th:each="list:${list}">
+                <td style="width: 100px;" th:text="${list.getTime()}"></td>
+                <td style="width: 100px;" th:text="${list.getObject()}"></td>
+                <td style="width: 150px;" th:text="${list.getID()}"></td>
+                <td style="width: 280px;word-break:break-all;" th:utext="${list.getThings()}"></td>
+                <td style="width: 140px;">
+                    <input type="checkbox" th:if="${list.getSwitch} eq '1'" checked="checked"
+                           th:id="switch+${list.getNumber()}"/>
+                    <input type="checkbox" th:if="${list.getSwitch} eq '0'" th:id="switch+${list.getNumber()}"/>
+                    <label th:for="switch+${list.getNumber()}"></label>
+                    <button name="button" style="--color:red;--slant:.5em"
+                            th:onclick="'del(' + ${list.getNumber()} + ');'">删除
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="add" class="add" onclick="appear()"></div>
+    <div id="put" class="put" onclick="disappear()"></div>
+    <div id="cover" class="cover"></div>
+</html>

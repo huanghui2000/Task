@@ -1,0 +1,4 @@
+com\example\taskio\controller\TextParsing.class
+com\example\taskio\controller\IndexController.class
+com\example\taskio\TaskioApplication.class
+com\example\taskio\controller\TextParsing$Task.class
