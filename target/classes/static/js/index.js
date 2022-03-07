@@ -22,7 +22,7 @@ function firm(number) {
         return false;
 }
 
-function Switch(Switch, number) {
+function updateSwitch(Switch, number) {
     const msg = prompt("请输入身份码");
     if (msg != null && msg !== "") {
         xmlhttp.open("GET", "/开关?number=" + number + "&Code=" + msg + "&Switch=" + Switch, true);
