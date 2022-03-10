@@ -21,6 +21,12 @@ public class IndexController {
     }
 
     @ResponseBody
+    @GetMapping("/测试")
+    public String Try() throws Exception {
+        return "123";
+    }
+
+    @ResponseBody
     @GetMapping("/删除")
     public String delNumber(@RequestParam("number") int Number, @RequestParam("Code") String Code) throws Exception {
         if (TaskOperation.getCode(Number).equals(Code)) {
