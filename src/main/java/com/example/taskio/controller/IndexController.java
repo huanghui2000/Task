@@ -13,17 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class IndexController {
 
-    @SuppressWarnings("SameReturnValue")
     @GetMapping("/")
     public String toIndex(Model model) throws Exception {
         model.addAttribute("list", TaskOperation.getTask());
         return "index";
-    }
-
-    @ResponseBody
-    @GetMapping("/测试")
-    public String Try() throws Exception {
-        return "123";
     }
 
     @ResponseBody
@@ -38,9 +31,13 @@ public class IndexController {
     @ResponseBody
     @GetMapping("/开关")
     public String updateSwitch(@RequestParam("number") int Number, @RequestParam("Code") String Code, @RequestParam("Switch") String Switch) throws Exception {
+        System.out.println(Number + " " + Code + " " + Switch);
         if (TaskOperation.getCode(Number).equals(Code)) {
             TaskOperation.updateSwitch(Switch, Number);
-            return "身份码正确,已经将任务关闭" + Number;
-        } else return "身份码错误,请重新输入" + Number;
+            if (Switch.equals("1"))
+                return "身份码正确,已经将任务关闭";
+            else
+                return "身份码正确,已经将任务开启";
+        } else return Switch + "身份码错误,无法操作" + Number;
     }
 }

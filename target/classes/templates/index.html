@@ -25,16 +25,18 @@
                 <td style="width: 150px;" th:text="${list.getID()}"></td>
                 <td style="width: 280px;word-break:break-all;" th:utext="${list.getThings()}"></td>
                 <td style="width: 140px;">
-                    <input type="checkbox" th:if="${list.getSwitch} eq '1'" checked="checked"
-                           th:id="switch+${list.getNumber()}"
-                           th:onclick="'updateSwitch('+${list.getNumber()}+','+${list.getNumber()}+');'"/>
 
-                    <input type="checkbox" th:if="${list.getSwitch} eq '0'"
+                    <input type="checkbox" th:if="${list.getSwitch()} eq '0'"
                            th:id="switch+${list.getNumber()}"
-                           th:onclick="'updateSwitch('+${list.getNumber()}+','+${list.getNumber()}+');'"/>
+                           th:onclick="Switch([[${list.getSwitch()}]],[[${list.getNumber()}]])"/>
+
+                    <input type="checkbox" th:if="${list.getSwitch()} eq '1'" checked="checked"
+                           th:id="switch+${list.getNumber()}"
+                           th:onclick="Switch([[${list.getSwitch()}]],[[${list.getNumber()}]])"/>
+
                     <label th:for="switch+${list.getNumber()}"></label>
                     <button name="button" style="--color:red;--slant:.5em"
-                            th:onclick="'del(' + ${list.getNumber()} + ');'">删除
+                            th:onclick="'del('+${list.getNumber()}+');'">删除
                     </button>
                 </td>
             </tr>
